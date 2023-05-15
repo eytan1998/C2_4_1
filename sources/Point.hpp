@@ -6,9 +6,9 @@
 
 using namespace std;
 class Point {
-    double a, b;
+    double x, y;
 public:
-    Point(double a,double b);
+    Point(double a_val,double b_val);
     double distance(Point other);
     string print();
     static Point moveTowards(Point src,Point dest,double distance);

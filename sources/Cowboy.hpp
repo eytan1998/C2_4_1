@@ -3,9 +3,10 @@
 #define COWBOY_H
 
 #include "Character.hpp"
-#define COWBOY_DMG 10
-#define COWBOY_BULLETS 6
-#define COWBOY_HP 110
+
+constexpr int COWBOY_DMG = 10;
+constexpr int COWBOY_BULLETS = 6;
+constexpr int COWBOY_HP = 110;
 
 class Cowboy : public Character {
     int boolet;//TODO why not bullet

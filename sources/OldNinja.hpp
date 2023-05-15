@@ -2,8 +2,8 @@
 
 #include <utility>
 
-#define OLD_NINJA_SPEED 8
-#define OLD_NINJA_HP 150
+constexpr int OLD_NINJA_SPEED = 8;
+constexpr int OLD_NINJA_HP =150;
 
 class OldNinja : public Ninja {
 

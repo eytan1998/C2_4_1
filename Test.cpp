@@ -570,13 +570,109 @@ TEST_CASE("old-ninja") {
 
 TEST_CASE("Team") {
     SUBCASE("constructor") {
+        Point a(32.3,44),b(1.3,3.5);
+        Cowboy *tom = new Cowboy("Tom", a);
+        YoungNinja *sushi1 = new YoungNinja("sushi", b);
+        TrainedNinja *sushi2 = new TrainedNinja("sushi", b);
+        OldNinja *sushi3 = new OldNinja("sushi", b);
+
+        CHECK_NOTHROW(Team team_A(tom););
+        CHECK_NOTHROW(Team team_A(sushi1););
+        CHECK_NOTHROW(Team team_A(sushi2););
+        CHECK_NOTHROW(Team team_A(sushi3););
+
     }
     SUBCASE("add") {
+        Point a(32.3,44),b(1.3,3.5);
+        Cowboy *tom = new Cowboy("Tom", a);
+        YoungNinja *sushi1 = new YoungNinja("sushi", b);
+        TrainedNinja *sushi2 = new TrainedNinja("sushi", b);
+        OldNinja *sushi3 = new OldNinja("sushi", b);
+        OldNinja *sushi4 = new OldNinja("sushi", b);
+        OldNinja *sushi5 = new OldNinja("sushi", b);
+        OldNinja *sushi6 = new OldNinja("sushi", b);
+        OldNinja *sushi7 = new OldNinja("sushi", b);
+        OldNinja *sushi8 = new OldNinja("sushi", b);
+        OldNinja *sushi9= new OldNinja("sushi", b);
+        OldNinja *sushi10= new OldNinja("sushi", b);
+
+        Team team(tom);
+        CHECK_EQ(team.stillAlive(),1);
+        team.add(sushi1);
+        team.add(sushi2);
+        team.add(sushi3);
+        CHECK_EQ(team.stillAlive(),4);
+        //cant add twice
+        CHECK_THROWS(team.add(tom));
+        team.add(sushi4);
+        team.add(sushi5);
+        team.add(sushi6);
+        team.add(sushi7);
+        team.add(sushi8);
+        team.add(sushi9);
+        CHECK_EQ(team.stillAlive(),10);
+        //cant add more than 10
+        team.add(sushi10);
+        CHECK_EQ(team.stillAlive(),10);
     }
     SUBCASE("attack") {
+        Point a(32.3,44),b(1.3,3.5);
+        Cowboy *tom = new Cowboy("Tom", a);
+        YoungNinja *sushi1 = new YoungNinja("sushi", b);
+        TrainedNinja *sushi2 = new TrainedNinja("sushi", b);
+        OldNinja *sushi3 = new OldNinja("sushi", b);
+        Team teamA(tom);
+        teamA.add(sushi1);
+
+        Team teamB(sushi2);
+        teamB.add(sushi3);
+
+        CHECK_EQ(teamB.stillAlive(),2);
+        for (int i = 0; i < 10; ++i) {
+            teamA.attack(&teamB);
+        }
+        CHECK_EQ(teamB.stillAlive(),0);
+
+
     }
     SUBCASE("stillAlive") {
-    }
-    SUBCASE("destructor") {
+        Point a(32.3,44),b(1.3,3.5);
+        Cowboy *tom = new Cowboy("Tom", a);
+        YoungNinja *sushi1 = new YoungNinja("sushi", b);
+        TrainedNinja *sushi2 = new TrainedNinja("sushi", b);
+        OldNinja *sushi3 = new OldNinja("sushi", b);
+        OldNinja *sushi4 = new OldNinja("sushi", b);
+        OldNinja *sushi5 = new OldNinja("sushi", b);
+        OldNinja *sushi6 = new OldNinja("sushi", b);
+        OldNinja *sushi7 = new OldNinja("sushi", b);
+        OldNinja *sushi8 = new OldNinja("sushi", b);
+        OldNinja *sushi9= new OldNinja("sushi", b);
+        OldNinja *sushi10= new OldNinja("sushi", b);
+
+        Team team(tom);
+        CHECK_EQ(team.stillAlive(),1);
+        team.add(sushi1);
+        team.add(sushi2);
+        team.add(sushi3);
+        CHECK_EQ(team.stillAlive(),4);
+        team.add(sushi4);
+        team.add(sushi5);
+        team.add(sushi6);
+        team.add(sushi7);
+        team.add(sushi8);
+        team.add(sushi9);
+        CHECK_EQ(team.stillAlive(),10);
+        sushi9->hit(OLD_NINJA_HP);
+        CHECK_EQ(team.stillAlive(),9);
+        //cant add after one dead
+        team.add(sushi10);
+
+        sushi8->hit(OLD_NINJA_HP);
+        CHECK_EQ(team.stillAlive(),8);
+        sushi7->hit(OLD_NINJA_HP);
+        CHECK_EQ(team.stillAlive(),7);
+        sushi6->hit(OLD_NINJA_HP);
+        CHECK_EQ(team.stillAlive(),6);
+
     }
 }

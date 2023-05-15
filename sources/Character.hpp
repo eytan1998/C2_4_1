@@ -16,22 +16,21 @@ protected:
 public:
     Character(string name, int hit_points, Point location) : name(std::move(name)), hp(hit_points),
                                                              location(location) {
-        if (hp <= 0)throw invalid_argument("cant create dead character");
+
+    }
+    virtual ~Character() = default;
+    bool isAlive() const {
+        return 0;
+
     }
 
-    bool isAlive() const { return hp > 0; }
-
     double distance(Character *other) {
-        return location.distance(other->location);
+        return 0;
+
     }
 
     void hit(int dmg) {
-        if (dmg <= 0)return;
-        //not need to kill him more
-        if (isAlive()) {
-            if (dmg > hp) hp = 0;
-            else hp -= dmg;
-        }
+
     }
 
     string getName() {
@@ -43,7 +42,6 @@ public:
     }
 
     void setLocation(Point newPoint) {
-        location = newPoint;
     }
 
     virtual string print() { return ""; }

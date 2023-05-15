@@ -7,10 +7,13 @@
 #include "OldNinja.hpp"
 #include "YoungNinja.hpp"
 #include "TrainedNinja.hpp"
+constexpr int MAX_TEAM_SIZE = 10;
 
 namespace ariel{}
 class Team {
-    Character* team[10];
+    Character* team[MAX_TEAM_SIZE] = {NULL};
+    int leader;
+    int index;
 public:
     explicit Team(Character * leader);
     ~Team();
@@ -18,7 +21,7 @@ public:
     void attack(Team * enemy);
     int stillAlive();
     void print();
-
+    int findNearest();
 };
 
 

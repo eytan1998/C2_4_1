@@ -1,33 +1,26 @@
 
 #include "Point.hpp"
 
-Point::Point(double a, double b) : a(a), b(b) {}
+Point::Point(double a_val, double b_val) : x(a_val), y(b_val) {}
 
 double Point::distance(Point other) {
-    return std::sqrt(pow(a - other.a, 2) + pow(b - other.b, 2));
+    return 0;
 }
 
 string Point::print() {
-    return "(" + to_string(a) + "," + to_string(b) + ")";
+    return "";
 }
 
 Point Point::moveTowards(Point src, Point dest, double distance) {
-    double deltaX = dest.a - src.a;
-    double deltaY = dest.b - src.b;
-
-    double coeff = distance / src.distance(dest);
-    if (coeff > 1)coeff = 1;
-
-    return Point(src.a + coeff * deltaX, src.b + coeff * deltaY);
+    return Point(0,0);
 }
 
 ostream &operator<<(ostream &output, const Point &point) {
-    output << "(" << point.a << "," << point.b << ")";
     return output;
 }
 
 bool operator==(const Point &pointA , const Point &pointB) {
-    return (pointA.a == pointB.a && pointA.b == pointB.b);
+    return true;
 }
 
 bool operator!=(const Point &pointA, const Point &pointB) {
