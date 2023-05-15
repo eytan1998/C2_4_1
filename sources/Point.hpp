@@ -10,9 +10,11 @@ class Point {
 public:
     Point(double a,double b);
     double distance(Point other);
-    void print();
+    string print();
     static Point moveTowards(Point src,Point dest,double distance);
     friend ostream &operator<<(ostream &output, const Point &point);
+    friend bool operator==(const Point &pointA , const Point &pointB);
+    friend bool operator!=(const Point &pointA , const Point &pointB);
 };
 
 

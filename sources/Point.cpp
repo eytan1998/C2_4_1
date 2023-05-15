@@ -7,8 +7,8 @@ double Point::distance(Point other) {
     return std::sqrt(pow(a - other.a, 2) + pow(b - other.b, 2));
 }
 
-void Point::print() {
-    cout << "(" << a << "," << b << ")" << endl;
+string Point::print() {
+    return "(" + to_string(a) + "," + to_string(b) + ")";
 }
 
 Point Point::moveTowards(Point src, Point dest, double distance) {
@@ -24,4 +24,12 @@ Point Point::moveTowards(Point src, Point dest, double distance) {
 ostream &operator<<(ostream &output, const Point &point) {
     output << "(" << point.a << "," << point.b << ")";
     return output;
+}
+
+bool operator==(const Point &pointA , const Point &pointB) {
+    return (pointA.a == pointB.a && pointA.b == pointB.b);
+}
+
+bool operator!=(const Point &pointA, const Point &pointB) {
+    return !(pointA==pointB);
 }

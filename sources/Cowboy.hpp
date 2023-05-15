@@ -3,9 +3,9 @@
 #define COWBOY_H
 
 #include "Character.hpp"
-#define COWBOY_DMG 1
+#define COWBOY_DMG 10
 #define COWBOY_BULLETS 6
-#define COWBOY_HP 11
+#define COWBOY_HP 110
 
 class Cowboy : public Character {
     int boolet;//TODO why not bullet
@@ -17,6 +17,8 @@ public:
     bool hasboolets();
 
     void reload();
+
+    string print() override;
 };
 
 
